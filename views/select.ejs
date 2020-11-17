@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>选择问卷</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+<div class="htmleaf-container">
+	<div class="wrapper"> 
+		<div class="container">
+			<div id="content">
+			尊敬的客户：
+			<p style="text-align:justify;margin-left:10px;margin-right:10px">您好！我司开展此次客户满意度的调查，目的是为了了解现今我司的服务质量，掌握客户的潜在需求。希望您能如实填写，使我们能继续为您提供完善的服务。</p>
+			<ul>
+			<form class="form">
+			<p>请点击进入相应的问卷：</p>
+			<% for(var index in surveyList){ %>
+			<% if(surveyList[index].finished==0){ %>
+			<li><a href="javascript:;" onclick="page(<%=surveyList[index].surveyTypeId%>)"><%=surveyList[index].surveyTypeText%>(未完成)</a></li>
+			<%}else{%>
+			<li><%=surveyList[index].surveyTypeText%>(已完成)</li>
+			<% } %>
+			<% } %>
+			<br />
+			<button type="button" id="logout-button">Quit</button>
+			</form>
+			</ul>
+			</div>
+		</div>
+		
+		<ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</div>
+<script src="http://lib.sinaapp.com/js/jquery/2.2.4/jquery-2.2.4.min.js"></script>
+<script>
+$('#logout-button').click(function (event) {
+	$.ajax({
+		url:"/logout",
+		data:{},
+		type:"GET",		
+		async:true,
+		success:function(data){			
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').delay(1500).addClass('form-success');
+			setTimeout(function(){
+				location.href = "/logout";
+			},2000);
+		}
+	})
+});    
+
+function page(curentpage) {
+	location.href="/index?stype="+curentpage;
+}
+</script>
+</body>
+</html>

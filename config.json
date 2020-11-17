@@ -1,0 +1,16 @@
+{
+    "mysqlConfig": {
+        "host": "127.0.0.1",
+        "user": "root",
+        "password": "sjd123",
+        "database": "csa",
+        "port": 3306
+    },
+    "otherConfig": {
+        "host": "127.0.0.1",
+        "port": 8088
+    },
+    "logoutConfig": {
+        "user": ""
+    }
+}

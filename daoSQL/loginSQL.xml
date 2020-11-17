@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sql>
+    <userLoginInfo>
+        select uid,username,pwd
+        from userinfo where username='{%=uname%}' and pwd='{%=pwd%}'
+    </userLoginInfo>
+    <surveySelect>
+        select uid,surveyTypeText,surveyTypeId,finished from surveyselect where uid='{%=uid%}'
+    </surveySelect>
+    <surveyUpdate>
+        update surveyselect set finished = '1' where uid= '{%=uid%}' and surveyTypeId = '{%=surveyTypeId%}'
+    </surveyUpdate>
+    <surveyResult>
+        insert into scorenew (uid,question11,question111,question112,question113,question21,question211,question212,
+        question22,question221,question222,question223,question31,question311,question312,question32,question321,
+        question322,question323,question41,question411,question412,question51,question511,question512,question52,
+        question521,question522,question61,question611,question612,question613,question71,question711,question712,
+        question713,comment,shanghai,chengdu,beijing,chongqing,zhengzhou,suzhou,udate,surveyTypeId) 
+        values ({%=uid%},{%=question11%},'{%=question111%}','{%=question112%}','{%=question113%}',{%=question21%},'{%=question211%}',
+        '{%=question212%}',{%=question22%},'{%=question221%}','{%=question222%}','{%=question223%}',{%=question31%},'{%=question311%}',
+        '{%=question312%}',{%=question32%},'{%=question321%}','{%=question322%}','{%=question323%}',{%=question41%},'{%=question411%}',
+        '{%=question412%}',{%=question51%},'{%=question511%}','{%=question512%}',{%=question52%},'{%=question521%}','{%=question522%}',
+        {%=question61%},'{%=question611%}','{%=question612%}','{%=question613%}',{%=question71%},'{%=question711%}','{%=question712%}',
+        '{%=question713%}','{%=comment%}',{%=shanghai%},{%=chengdu%},{%=beijing%},{%=chongqing%},{%=zhengzhou%},{%=suzhou%},
+        {%=date%},{%=surveyTypeId%})
+    </surveyResult>
+</sql>
